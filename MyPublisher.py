@@ -9,11 +9,13 @@ class MyPublisher(object):
         self.sendFunc = callback
 
     def publish(self, msg, info = None):
-        print "msg:"
-        print msg
-        print "info:"
-        print info
+        # print "msg:"
+        # print msg
+        # print "info:"
+        # print info
         # parse for changed sensorId
+        changedSensor = info
+        allSensors = self.db.get()
         '''
         self._data = tools.checkKeys(msg, ('nodeid', 'childid', 'payload'))
         if self._data and self.connected:
