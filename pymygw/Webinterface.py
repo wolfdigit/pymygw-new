@@ -3,6 +3,7 @@ from datetime import datetime
 
 import config
 import Database
+import os
 
 app = Flask(__name__, template_folder='web/templates', static_folder='web/static')
 webSendCallback = None
@@ -53,3 +54,12 @@ def act(node, sensor):
         return "0|OK"
     else:
         return "-1|empty callback"
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    code = request.form['code']
+    filename = os.path.dirname(os.path.realpath(__file__)) + "/../userLogic.py"
+    print filename
+    with open(filename, 'w') as fp:
+        fp.write(code)
+    return "0|OK"
